@@ -51,7 +51,7 @@ namespace ShoppingCart
                     br++;
                 }
                 else if (command == "removeProduct")
-                {//no work
+                {
                     using (StreamWriter writer = new StreamWriter(filename))
                     {
                         int id = int.Parse(productPreformance[1]);
