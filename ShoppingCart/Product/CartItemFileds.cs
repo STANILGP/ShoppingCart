@@ -8,22 +8,22 @@ namespace ShoppingCart.Product
 {
     public class CartItemFileds
     {
-        protected string ID;
-        protected string ProductID;
+        protected int ID;
+        protected int ProductID;
         protected int Quantity;
 
-        public CartItemFileds(string iD, string PRODUCT_ID, int QUANTITY)
+        public CartItemFileds(int iD, int PRODUCT_ID, int QUANTITY)
         {
             ID = iD;
             ProductID = PRODUCT_ID;
             Quantity = QUANTITY;
         }
-        public string Id
+        public int Id
         {
             get { return ID; }
             set { ID = value; }
         }
-        public string PRODUCT_ID
+        public int PRODUCT_ID
         {
             get { return ProductID; }
             set { ProductID = value; }

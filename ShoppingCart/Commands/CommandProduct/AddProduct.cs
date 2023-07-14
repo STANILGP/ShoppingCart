@@ -18,11 +18,5 @@ namespace ShoppingCart.Commands.CommandProduct
             Price = price;
             Available_Quantity = available_Quantity;
         }
-
-        public void ADD_Product(List<ProductFields> products, int br)
-        {
-            products.Add(new ProductFields(br, Article_Name, Desciption, Price, Available_Quantity));
-            br++;
-        }
     }
 }
