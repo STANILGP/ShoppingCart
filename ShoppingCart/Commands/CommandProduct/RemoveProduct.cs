@@ -10,16 +10,18 @@ namespace ShoppingCart.Commands.CommandProduct
 {
     public class RemoveProduct 
     {
-        public bool Remove_Product(List<ProductFields> products,int id)
+        public void Remove_Product(List<ProductFields>products,int id)
         {
-            
-           ProductFields ids = products.Find(x => x.Id == id);
-            if (ids != null)
+            ProductFields removeproduct = products.Find(p => p.Id == id);
+            if (removeproduct != null)
             {
-                products.Remove(ids);
-                return true;
+                products.Remove(removeproduct);
+                Console.WriteLine("Product is removed.");
             }
-            else { return false; }
+            else
+            {
+                Console.WriteLine("Product is not found.");
+            }
         }
     }
 }
