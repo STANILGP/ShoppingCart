@@ -10,18 +10,27 @@ namespace ShoppingCart.Product
     {
         protected int ID;
         protected string Article_Name;
-        protected string Desciption;
+        protected string Description;
         protected double Price;
         protected int Available_Quantity;
 
-        public ProductFields(int id, string article_Name, string desciption, double price, int available_Quantity)
+        public ProductFields(int id, string article_Name, string description, double price, int available_Quantity)
         {
             ID = id;
             Article_Name = article_Name;
-            Desciption = desciption;
+            Description = description;
             Price = price;
             Available_Quantity = available_Quantity;
         }
+        public ProductFields()
+        { 
+            ID=1000;
+            Article_Name = "apple";
+            Description = "red";
+            Price=0.98;
+            Available_Quantity = 10;
+        }
+
         public int Id
         {
             get { return ID; }
@@ -32,10 +41,10 @@ namespace ShoppingCart.Product
             get { return Article_Name; }
             set { Article_Name = value; }
         }
-        public string DESCOPTION
+        public string DESCRIPTION
         {
-            get { return Desciption; }
-            set { Desciption = value; }
+            get { return Description; }
+            set { Description = value; }
         }
         public double PRICE
         {
@@ -49,7 +58,7 @@ namespace ShoppingCart.Product
         }
         public override string ToString()
         {
-            return $"ID:{ID} Name:{Article_Name} Descoption:{Desciption} Price:{Price} Quantity:{Available_Quantity}";
+            return $"ID: {ID} Name: {Article_Name} Description: {Description} Price: {Price} Quantity: {Available_Quantity}";
         }
     }
 }

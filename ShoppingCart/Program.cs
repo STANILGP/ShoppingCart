@@ -14,7 +14,11 @@ namespace ShoppingCart
 {
     public class Program
     {
-
+        //Function for Save (29line)
+        //Help (59line)
+        //Login (64line)
+        //Function for Read
+        //Checks
         static void Main(string[] args)
         {
             
@@ -26,6 +30,28 @@ namespace ShoppingCart
             string? Command;
             do
             {
+                //Make in function
+                using (StreamWriter writer = new StreamWriter(filename))
+                {
+                    writer.WriteLine("Products:");
+                    writer.WriteLine();
+                    foreach (ProductFields field in products)
+                    {
+                        writer.WriteLine(field.ToString());
+                    }
+                    writer.WriteLine();
+                    if (cartItems != null) 
+                    {
+                        writer.WriteLine("Cart Items:");
+                        writer.WriteLine();
+                        foreach (CartItemFileds cartItem in cartItems)
+                        {
+                            writer.WriteLine(cartItem.ToString());
+                        }
+                    }
+                    
+                }
+                // Make in function
                 Console.WriteLine("Use command \"help\" to see all commands.");
                 Console.Write("Write Command:");
                 Command = Console.ReadLine();
@@ -49,17 +75,11 @@ namespace ShoppingCart
                     string Description = productPreformance[2];
                     double Price = double.Parse(productPreformance[3]);
                     int Quantity = int.Parse(productPreformance[4]);
-                    using (StreamWriter writer = new StreamWriter(filename))
-                    {
-                        Console.WriteLine("Products:");
+                    
                         AddProduct addProduct;
                         addProduct = new AddProduct(br, Name, Description, Price, Quantity);
                         products.Add(addProduct);
-                        foreach (ProductFields field in products)
-                        {
-                            writer.WriteLine(field.ToString()); 
-                        }
-                    }
+                       
                     br++;
                 }
 
@@ -68,13 +88,6 @@ namespace ShoppingCart
                         int id = int.Parse(productPreformance[1]);
                         RemoveProduct removeProduct = new RemoveProduct();
                         removeProduct.Remove_Product(products, id);
-                    using (StreamWriter writer = new StreamWriter(filename))
-                    {
-                        foreach (ProductFields field in products)
-                        {
-                            writer.WriteLine(field.ToString());
-                        }
-                    }
                 }
 
                 else if (command == "editProduct")  
@@ -82,7 +95,7 @@ namespace ShoppingCart
                     int EditId = int.Parse(productPreformance[1]);
                     EditProduct editProduct = new EditProduct();
                     editProduct.Edit_Product(products, EditId);
-                }  
+                } 
 
                 else if (command == "listProduct")
                 {
@@ -106,35 +119,48 @@ namespace ShoppingCart
                 else if (command == "addCartItem")  
                 {
                     int IdProduct = int.Parse(productPreformance[1]);
-                    products.Find(p => p.Id == IdProduct);
+                   ProductFields fields= products.Find(p => p.Id == IdProduct);
                     int Quantity = int.Parse(productPreformance[2]);
-                    using (StreamWriter writer = new StreamWriter(filename))
+                    if (fields != null)
                     {
-                        Console.WriteLine("CartItems:");
-                        AddCartItem addCart;
-                        addCart = new AddCartItem(Items,IdProduct,Quantity);
-                        cartItems.Add(addCart);
+                            AddCartItem addCart;
+                            addCart = new AddCartItem(Items, IdProduct, Quantity);
+                            cartItems.Add(addCart);
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Dont have product wiht this ID");
                     }
                     Items++;
                 }
 
                 else if (command == "removeCartItem")
                 {
-                    //TODO:
-                }//TODO:
+                    int id = int.Parse(productPreformance[1]);
+                    RemoveCartItem removeItem = new RemoveCartItem();
+                    removeItem.Remove_CartItem(cartItems, id);
+                }
+
+                else if (command == "listCartItem")
+                {
+                    ListCartItem listCart = new ListCartItem();;
+                    listCart.List_CartItem(cartItems);
+                }
 
                 else if (command == "updateCartItem")
                 {
-                    //TODO:
-                }//TODO:
+                    int UpdateId = int.Parse(productPreformance[1]);
+                   UpdateCartItem update = new UpdateCartItem();
+                    update.Update_Item(cartItems, UpdateId);
+                }
 
                 else if (command == "checkout")
                 {
-                    //TODO:
-                }//TODO:
+                   CheckOut checkOut = new CheckOut();
+                   checkOut.Check_Out(cartItems, Items, products);
+                }
 
-                else if (command != "help" || command != "login" || command != "addProduct" || command != "removeProduct" || command != "editProduct" || command != "listProduct" || command != "searchProduct"
-                    || command != "addCartItem" || command != "removeCartItem" || command != "updateCartItem" || command != "checkout")
+                else if (command != "help" || command != "login" || command != "addProduct" || command != "removeProduct" || command != "editProduct" || command != "listProduct" || command != "searchProduct"|| command != "addCartItem" || command != "removeCartItem" || command != "updateCartItem" || command != "listCartItem" || command != "checkout")
                 {
                     Console.WriteLine("This command does not exist");
                 }

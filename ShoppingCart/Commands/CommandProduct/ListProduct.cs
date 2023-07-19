@@ -9,11 +9,11 @@ namespace ShoppingCart.Commands.CommandProduct
 {
     public class ListProduct : ProductFields
     {
-        public ListProduct(int id, string article_Name, string desciption, double price, int available_Quantity) : base(id, article_Name, desciption, price, available_Quantity)
+        public ListProduct(int id, string article_Name, string description, double price, int available_Quantity) : base(id, article_Name, description, price, available_Quantity)
         {
             ID = id;
             Article_Name = article_Name;
-            Desciption = desciption;
+            DESCRIPTION = description;
             Price = price;
             Available_Quantity = available_Quantity;
         }

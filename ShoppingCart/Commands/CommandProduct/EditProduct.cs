@@ -11,21 +11,22 @@ namespace ShoppingCart.Commands.CommandProduct
     {
         public void Edit_Product(List<ProductFields> products,int id)
         {
+            ProductFields editProduct = products.Find(p => p.Id == id);
+            Console.WriteLine(editProduct.ToString());
             Console.WriteLine("Name/Discription/Price/Quantity");
             Console.WriteLine("What you will edit?");
             string editcom=Console.ReadLine();
-            ProductFields editProduct = products.Find(p => p.Id == id);
             if (editcom == "Name")
             {
                     Console.WriteLine("New Name:");
                     string editName=Console.ReadLine();
-                    editProduct.Discription=editName;
+                    editProduct.Article_NAME=editName;
             }
             else if (editcom == "Discription")
             {
                 Console.WriteLine("New Discription:");
                 string editDiscription = Console.ReadLine();
-                editProduct.Discription = editDiscription;
+                editProduct.DESCRIPTION = editDiscription;
             }
             else if (editcom == "Price")
             {
