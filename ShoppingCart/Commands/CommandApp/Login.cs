@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Commands.CommandApp
 {
-    internal class Login
+    public class Login
     {
+         public string LoginRole() 
+         {
+            //while
+            Console.WriteLine("Login As Admin/Client");
+            string role=Console.ReadLine();
+            if (role == "Client")
+            {
+                role = "Client";
+            }
+            else if (role == "Admin")
+            {
+                role = "Admin";
+            }
+            else 
+            { 
+                LoginRole();
+            }
+            return role;
+         }
     }
 }

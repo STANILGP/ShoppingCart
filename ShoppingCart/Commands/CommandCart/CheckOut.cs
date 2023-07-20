@@ -17,8 +17,8 @@ namespace ShoppingCart.Commands.CommandCart
             {
                 int ProductId = item.PRODUCT_ID;
                 ProductFields product= productFields.Find(p=>p.Id==ProductId);
-                
                 sum += item.QUANTITY*product.PRICE;
+                product.QUANTITY -= item.QUANTITY;
             }
             Console.WriteLine(sum);
             cartItems.Clear();
