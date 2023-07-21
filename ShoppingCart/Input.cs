@@ -19,8 +19,6 @@ namespace ShoppingCart
                 string? Command;
             do
             {
-               
-
                 Console.Write("Write Command:");
                 Command = Console.ReadLine();
                 InputSplit inputSplit = new InputSplit();
@@ -84,14 +82,8 @@ namespace ShoppingCart
 
                 else if (command == "listProduct")
                 {
-                    using (StreamReader reader = new StreamReader(filename))
-                    {
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            Console.WriteLine(line);
-                        }
-                    }
+                    ListProduct listProduct =new ListProduct();
+                    listProduct.List_Product(products);
                 }
 
                 else if (command == "searchProduct")
@@ -113,13 +105,15 @@ namespace ShoppingCart
                             AddCartItem addCart;
                             addCart = new AddCartItem(Items, IdProduct, Quantity);
                             cartItems.Add(addCart);
+                            Items++;
                         }
                         else
                         {
                             Console.WriteLine("Dont have product wiht this ID");
                         }
-                        Items++;
+
                     }
+                    
                     else
                     {
                         Console.WriteLine("You must be Client for this command");
@@ -180,6 +174,10 @@ namespace ShoppingCart
                     }
                 }
 
+                else if (command == "exit")
+                {
+                    break;
+                }
                 else
                 {
                     Console.WriteLine("This command does not exist");

@@ -11,16 +11,14 @@ namespace ShoppingCart.Functions
     {
         public SaveInFile(string filename, List<ProductFields> products, List<CartItemFileds> cartItems)
         {
-            using (StreamWriter writer = new StreamWriter(filename))
-            {
-                writer.WriteLine("Products:");
-                writer.WriteLine();
-                foreach (ProductFields field in products)
+                using (StreamWriter writer = new StreamWriter(filename))
                 {
-                    writer.WriteLine(field.ToString());
+                    foreach (ProductFields field in products)
+                    {
+                        writer.WriteLine(field.ToString());
+                    }
+                    writer.WriteLine();
                 }
-                writer.WriteLine();
-            }
         }
     }
 }

@@ -7,21 +7,13 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Commands.CommandProduct
 {
-    public class ListProduct : ProductFields
+    public class ListProduct
     {
-        public ListProduct(int id, string article_Name, string description, double price, int available_Quantity) : base(id, article_Name, description, price, available_Quantity)
+        public void List_Product(List<ProductFields> products)
         {
-            ID = id;
-            Article_Name = article_Name;
-            DESCRIPTION = description;
-            Price = price;
-            Available_Quantity = available_Quantity;
-        }
-        public void List_Product(List<ProductFields> products, int count)
-        {
-            for (int i = 0; i < count; i++)
+            foreach(ProductFields fields in products)
             {
-                Console.WriteLine(products[i]);
+                Console.WriteLine(fields);
             }
         }
     }

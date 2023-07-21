@@ -35,7 +35,7 @@ namespace ShoppingCart.Product
         }
         public override string ToString()
         {
-            return $"ID:{ID} Product ID:{ProductID} Quantity:{Quantity}";
+            return $"ID:{ID} ProductID{ProductID} Quamtity:{Quantity}";
         }
     }
 }

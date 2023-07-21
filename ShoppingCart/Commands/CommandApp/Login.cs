@@ -10,21 +10,29 @@ namespace ShoppingCart.Commands.CommandApp
     {
          public string LoginRole() 
          {
-            //while
-            Console.WriteLine("Login As Admin/Client");
-            string role=Console.ReadLine();
-            if (role == "Client")
+            string role;
+            bool a = false;
+            do
             {
-                role = "Client";
+                Console.WriteLine("Login As Admin/Client");
+                role = Console.ReadLine();
+                if (role == "Client")
+                {
+                    role = "Client";
+                    a = true;
+                }
+                else if (role == "Admin")
+                {
+                    role = "Admin";
+                    a = true;
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
             }
-            else if (role == "Admin")
-            {
-                role = "Admin";
-            }
-            else 
-            { 
-                LoginRole();
-            }
+            while (a!=true);
+            
             return role;
          }
     }

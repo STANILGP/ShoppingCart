@@ -58,7 +58,8 @@ namespace ShoppingCart.Product
         }
         public override string ToString()
         {
-            return $"ID: {ID} Name: {Article_Name} Description: {Description} Price: {Price} Quantity: {Available_Quantity}";
+            
+            return $"*{ID}*{Article_Name}*{Description}*{Price}*{Available_Quantity}*";
         }
     }
 }

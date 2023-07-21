@@ -16,22 +16,33 @@ namespace ShoppingCart
     public class Program
     {
         //Ctrl+C
-        //Quantity
         //Checks
         static void Main(string[] args)
         {
+            
             Login login = new Login();
             string role=login.LoginRole();
             string filename = "Product.txt";//Text Fail
-            ReadFromFile read = new ReadFromFile(filename);
+            Welcome welcome=new Welcome();
             List<ProductFields> products = new List<ProductFields>();//List for product
             List<CartItemFileds>cartItems = new List<CartItemFileds>();//List for Items in cart
             int Items = cartItems.Count();// Count Items
             int br = products.Count();//Count Product
-            Welcome welcome=new Welcome();
+            ReadFromFile read = new ReadFromFile(filename,products);
             Input input= new Input();
             input.Input_All(filename,products,cartItems,role,br,Items);
             SaveInFile saveInFile = new SaveInFile(filename, products, cartItems);
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if ((key.Modifiers & ConsoleModifiers.Control) != 0 && key.Key == ConsoleKey.C)
+                {
+                    SaveInFile saveInFileCtrlAndC = new SaveInFile(filename, products, cartItems);
+                    break;
+                }
+            }
+            Console.ReadLine();
         }
+        
     }
 }
