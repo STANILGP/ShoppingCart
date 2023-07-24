@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Product
 {
-    public class CartItemFileds
+    public class CartItemFileds : Program
     {
         protected int ID;
         protected int ProductID;

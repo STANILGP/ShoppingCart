@@ -9,7 +9,7 @@ namespace ShoppingCart.Commands.CommandProduct
 {
     public class SearchProduct
     {
-       
+
         public void Search_Product(List<ProductFields> products, string name)
         {
             ProductFields searchProduct = products.Find(p => p.Article_NAME == name);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Commands.CommandCart
 {
-    public class UpdateCartItem
+    public class UpdateCartItem 
     {
         public void Update_Item(List<CartItemFileds> item, int id)
         {

@@ -8,7 +8,7 @@ namespace ShoppingCart.Functions
 {
     public class Welcome
     {
-        public Welcome() 
+        public Welcome()
         {
             Console.WriteLine("Welcome");
             Console.WriteLine("Use command \"help\" to see all commands.");

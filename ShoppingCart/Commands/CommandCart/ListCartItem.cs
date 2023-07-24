@@ -9,7 +9,7 @@ namespace ShoppingCart.Commands.CommandCart
 {
     public class ListCartItem
     {
-        public void List_CartItem(List<CartItemFileds>cartItems) 
+        public void List_CartItem(List<CartItemFileds> cartItems)
         {
             foreach (CartItemFileds item in cartItems)
             {

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Commands.CommandProduct
 {
-    public class RemoveProduct 
+    public class RemoveProduct
     {
-        public void Remove_Product(List<ProductFields>products,int id)
+        public void Remove_Product(List<ProductFields> products, int id)
         {
             ProductFields removeproduct = products.Find(p => p.Id == id);
             if (removeproduct != null)

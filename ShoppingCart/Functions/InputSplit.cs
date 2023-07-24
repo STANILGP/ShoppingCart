@@ -10,10 +10,10 @@ namespace ShoppingCart.Functions
     {
         public string[] Split_Input(string input)
         {
-            string[] productsPreformance=input.Split('*');
+            string[] productsPreformance = input.Split('*');
 
             return productsPreformance;
-            
+
         }
     }
 }

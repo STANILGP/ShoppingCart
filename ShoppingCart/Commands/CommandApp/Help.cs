@@ -16,7 +16,7 @@ namespace ShoppingCart.Commands.CommandApp
             Console.WriteLine("addProduct*{Article Name}*{Discription}*{Price}*{Quantity}* ->Add Product");
             Console.WriteLine();
             Console.WriteLine("removeProdict*{ID}* ->Remove Product");
-            Console.WriteLine(); 
+            Console.WriteLine();
             Console.WriteLine("editProduct*{ID}* ->Edit Product Can change Name, Discription, Price and Quantity");
             Console.WriteLine();
             Console.WriteLine("listProduct ->Show all Products");

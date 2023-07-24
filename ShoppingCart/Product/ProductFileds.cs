@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Product
 {
-    public class ProductFields
+    public class ProductFields : Program
     {
         protected int ID;
         protected string Article_Name;
@@ -23,11 +23,11 @@ namespace ShoppingCart.Product
             Available_Quantity = available_Quantity;
         }
         public ProductFields()
-        { 
-            ID=1000;
+        {
+            ID = 1000;
             Article_Name = "apple";
             Description = "red";
-            Price=0.98;
+            Price = 0.98;
             Available_Quantity = 10;
         }
 
@@ -58,7 +58,7 @@ namespace ShoppingCart.Product
         }
         public override string ToString()
         {
-            
+
             return $"*{ID}*{Article_Name}*{Description}*{Price}*{Available_Quantity}*";
         }
     }

@@ -8,15 +8,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace ShoppingCart
 {
-    public class Input
+    public class Input 
     {
-        public void Input_All(string filename, List<ProductFields>products,List<CartItemFileds>cartItems,string role,int br,int Items) 
+        public void Input_All(string filename, List<ProductFields> products, List<CartItemFileds> cartItems, string role, int br, int Items)
         {
-                string? Command;
+            string? Command;
             do
             {
                 Console.Write("Write Command:");
@@ -39,12 +40,25 @@ namespace ShoppingCart
                         string Description = productPreformance[2];
                         double Price = double.Parse(productPreformance[3]);
                         int Quantity = int.Parse(productPreformance[4]);
-
-                        AddProduct addProduct;
-                        addProduct = new AddProduct(br, Name, Description, Price, Quantity);
-                        products.Add(addProduct);
-
-                        br++;
+                        if (Name==null || Description==null || Price==0 ||Quantity==0)
+                        { 
+                            Console.WriteLine("Missing one or many arguments"); 
+                        }
+                        if (Quantity > 0 || Price > 0)
+                        {
+                            Console.WriteLine("Price and Quantity cant be a negative numbers!");
+                        }
+                        if (productPreformance.Length > 4)
+                        {
+                            Console.WriteLine("Incorect Syntax");
+                        }
+                        else
+                        {
+                            AddProduct addProduct;
+                            addProduct = new AddProduct(br, Name, Description, Price, Quantity);
+                            products.Add(addProduct);
+                            br++;
+                        }
                     }
                     else
                     {
@@ -57,8 +71,15 @@ namespace ShoppingCart
                     if (role == "Admin")
                     {
                         int id = int.Parse(productPreformance[1]);
-                        RemoveProduct removeProduct = new RemoveProduct();
-                        removeProduct.Remove_Product(products, id);
+                        if (id == null)
+                        {
+                            Console.WriteLine("Missing ID to remove product");
+                        }
+                        else
+                        {
+                            RemoveProduct removeProduct = new RemoveProduct();
+                            removeProduct.Remove_Product(products, id);
+                        }
                     }
                     else
                     {
@@ -68,29 +89,38 @@ namespace ShoppingCart
 
                 else if (command == "editProduct")
                 {
-                    if (role == "Admin")
-                    {
                         int EditId = int.Parse(productPreformance[1]);
-                        EditProduct editProduct = new EditProduct();
-                        editProduct.Edit_Product(products, EditId);
-                    }
-                    else
-                    {
-                        Console.WriteLine("You must be Admin for this command");
-                    }
+                        if (EditId == null)
+                        {
+                            Console.WriteLine("Missing ID to remove product");
+                        }
+                        else
+                        {
+                            EditProduct editProduct = new EditProduct();
+                            editProduct.Edit_Product(products, EditId,role);
+                        }
+
                 }
 
                 else if (command == "listProduct")
                 {
-                    ListProduct listProduct =new ListProduct();
+                    ListProduct listProduct = new ListProduct();
                     listProduct.List_Product(products);
                 }
 
                 else if (command == "searchProduct")
                 {
                     string searchName = productPreformance[1];
-                    SearchProduct searchProduct = new SearchProduct();
-                    searchProduct.Search_Product(products, searchName);
+                    if (searchName == null)
+                    {
+                        Console.WriteLine("Missing Name for searching!");
+                    }
+                    else 
+                    {
+                        SearchProduct searchProduct = new SearchProduct();
+                        searchProduct.Search_Product(products, searchName);
+                    }
+                    
                 }
 
                 else if (command == "addCartItem")
@@ -100,6 +130,10 @@ namespace ShoppingCart
                         int IdProduct = int.Parse(productPreformance[1]);
                         ProductFields fields = products.Find(p => p.Id == IdProduct);
                         int Quantity = int.Parse(productPreformance[2]);
+                        if (IdProduct == null || Quantity == null)
+                        {
+                            Console.WriteLine("Missing IdProduct or Quantity");
+                        }
                         if (fields != null)
                         {
                             AddCartItem addCart;
@@ -113,7 +147,7 @@ namespace ShoppingCart
                         }
 
                     }
-                    
+
                     else
                     {
                         Console.WriteLine("You must be Client for this command");
@@ -125,8 +159,15 @@ namespace ShoppingCart
                     if (role == "Client")
                     {
                         int id = int.Parse(productPreformance[1]);
-                        RemoveCartItem removeItem = new RemoveCartItem();
-                        removeItem.Remove_CartItem(cartItems, id);
+                        if (id == null)
+                        {
+                            Console.WriteLine("Missing ID to remove product");
+                        }
+                        else
+                        {  
+                            RemoveCartItem removeItem = new RemoveCartItem();
+                            removeItem.Remove_CartItem(cartItems, id);
+                        }
                     }
                     else
                     {
@@ -152,8 +193,16 @@ namespace ShoppingCart
                     if (role == "Client")
                     {
                         int UpdateId = int.Parse(productPreformance[1]);
-                        UpdateCartItem update = new UpdateCartItem();
-                        update.Update_Item(cartItems, UpdateId);
+                        if (UpdateId == null)
+                        {
+                            Console.WriteLine("Missing ID to remove product");
+                        }
+                        else
+                        { 
+                            UpdateCartItem update = new UpdateCartItem();
+                            update.Update_Item(cartItems, UpdateId);
+                        }
+                        
                     }
                     else
                     {
@@ -176,7 +225,7 @@ namespace ShoppingCart
 
                 else if (command == "exit")
                 {
-                    break;
+                  
                 }
                 else
                 {

@@ -11,7 +11,7 @@ namespace ShoppingCart.Commands.CommandProduct
     {
         public void List_Product(List<ProductFields> products)
         {
-            foreach(ProductFields fields in products)
+            foreach (ProductFields fields in products)
             {
                 Console.WriteLine(fields);
             }

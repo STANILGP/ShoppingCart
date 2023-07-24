@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Functions
 {
-    public class SaveInFile
+    public class SaveInFile 
     {
-        public SaveInFile(string filename, List<ProductFields> products, List<CartItemFileds> cartItems)
+        public SaveInFile(List<ProductFields> products)
         {
-                using (StreamWriter writer = new StreamWriter(filename))
+            string filename = "Product.txt";
+            using (StreamWriter writer = new StreamWriter(filename))
+            {
+                foreach (ProductFields field in products)
                 {
-                    foreach (ProductFields field in products)
-                    {
-                        writer.WriteLine(field.ToString());
-                    }
-                    writer.WriteLine();
+                    writer.WriteLine(field.ToString());
                 }
+                writer.WriteLine();
+            }
         }
     }
 }

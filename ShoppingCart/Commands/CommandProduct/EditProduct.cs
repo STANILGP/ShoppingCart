@@ -9,45 +9,57 @@ namespace ShoppingCart.Commands.CommandProduct
 {
     public class EditProduct
     {
-        public void Edit_Product(List<ProductFields> products,int id)
+        public void Edit_Product(List<ProductFields> products, int id,string role)
         {
             ProductFields editProduct = products.Find(p => p.Id == id);
             Console.WriteLine(editProduct.ToString());
-            Console.WriteLine("Name/Description/Price/Quantity");
-            Console.WriteLine("What you will edit?");
-            string editcom=Console.ReadLine();
-
-            if (editcom == "Name")
-            {
+            string editcom = Console.ReadLine();
+            if (role == "Admin")
+            { 
+                Console.WriteLine("What you will edit?");
+                Console.WriteLine("Name/Description/Price/Quantity");
+                if (editcom == "Name")
+                {
                     Console.WriteLine("New Name:");
-                    string editName=Console.ReadLine();
-                    editProduct.Article_NAME=editName;
-            }
+                    string editName = Console.ReadLine();
+                    editProduct.Article_NAME = editName;
+                }
 
-            else if (editcom == "Description")
+                else if (editcom == "Description")
+                {
+                     Console.WriteLine("New Description:");
+                     string editDiscription = Console.ReadLine();
+                     editProduct.DESCRIPTION = editDiscription;
+                }
+
+                else if (editcom == "Price")
+                {
+                    Console.WriteLine("New Price:");
+                    double editPrice = double.Parse(Console.ReadLine());
+                    editProduct.PRICE = editPrice;
+                }
+
+                else if (editcom == "Quantity" )
+                {
+                    Console.WriteLine("New Quantity:");
+                    int editQuantity = int.Parse(Console.ReadLine());
+                    editProduct.QUANTITY = editQuantity;
+                }
+
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            else if (role == "Employee")
             {
-                Console.WriteLine("New Description:");
-                string editDiscription = Console.ReadLine();
-                editProduct.DESCRIPTION = editDiscription;
+                    Console.WriteLine("New Quantity:");
+                    int editQuantity = int.Parse(Console.ReadLine());
+                    editProduct.QUANTITY = editQuantity;
             }
-
-            else if (editcom == "Price")
-            {
-                Console.WriteLine("New Price:");
-                double editPrice = double.Parse(Console.ReadLine());
-                editProduct.PRICE = editPrice;
-            }
-
-            else if (editcom == "Quantity")
-            {
-                Console.WriteLine("New Quantity:");
-                int editQuantity = int.Parse(Console.ReadLine());
-                editProduct.QUANTITY = editQuantity;
-            }
-
             else 
             { 
-                Console.WriteLine("Error"); 
+                Console.WriteLine("You cant change the product!"); 
             }
         }
     }

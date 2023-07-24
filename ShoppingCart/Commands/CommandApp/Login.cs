@@ -8,17 +8,22 @@ namespace ShoppingCart.Commands.CommandApp
 {
     public class Login
     {
-         public string LoginRole() 
-         {
+        public string LoginRole()
+        {
             string role;
             bool a = false;
             do
             {
-                Console.WriteLine("Login As Admin/Client");
+                Console.WriteLine("Login As Admin/Client/Employee");
                 role = Console.ReadLine();
                 if (role == "Client")
                 {
                     role = "Client";
+                    a = true;
+                }
+                else if (role == "Employee")
+                {
+                    role = "Employee";
                     a = true;
                 }
                 else if (role == "Admin")
@@ -31,9 +36,9 @@ namespace ShoppingCart.Commands.CommandApp
                     Console.WriteLine("Error");
                 }
             }
-            while (a!=true);
-            
+            while (a != true);
+
             return role;
-         }
+        }
     }
 }
