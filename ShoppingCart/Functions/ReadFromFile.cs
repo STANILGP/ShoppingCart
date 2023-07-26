@@ -15,7 +15,7 @@ namespace ShoppingCart.Functions
             {
                 string line;
 
-                while ((line = sr.ReadLine()) != "")
+                while ((line = sr.ReadLine()) != null /*|| (line = sr.ReadLine()) != ""*/)
                 {
                     string[] parts = line.Split('*');
                     int id = int.Parse(parts[1]);

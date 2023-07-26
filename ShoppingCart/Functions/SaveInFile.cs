@@ -18,7 +18,6 @@ namespace ShoppingCart.Functions
                 {
                     writer.WriteLine(field.ToString());
                 }
-                writer.WriteLine();
             }
         }
     }

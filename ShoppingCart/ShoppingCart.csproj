@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OpenCover" Version="4.7.1221" />
+    <PackageReference Include="ReportGenerator" Version="5.1.23" />
+  </ItemGroup>
+
 </Project>

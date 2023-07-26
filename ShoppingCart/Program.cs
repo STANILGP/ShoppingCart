@@ -15,9 +15,9 @@ namespace ShoppingCart
 {
     public class Program
     {
-        //UnityTest
-        //Checks
+        //Time+CheckForCoreect
         private static List<ProductFields> products = new List<ProductFields>();
+        private static bool a = true;
         static void Main(string[] args)
         {
             Console.CancelKeyPress += CtrlCHandler;
@@ -25,15 +25,17 @@ namespace ShoppingCart
             string role=login.LoginRole();
             string filename = "Product.txt";//Text Fail
             Welcome welcome = new Welcome();
-            while (true)
+            
+            while (a != false)
             {
                 List<CartItemFileds> cartItems = new List<CartItemFileds>();//List for Items in cart
+                ReadFromFile read = new ReadFromFile(filename, products);
                 int Items = cartItems.Count();// Count Items
                 int br = products.Count();//Count Product
-                ReadFromFile read = new ReadFromFile(filename, products);
                 Input input = new Input();
                 input.Input_All(filename, products, cartItems, role, br, Items);
                 SaveInFile saveInFile = new SaveInFile(products);
+                a=false;
             }
         }
         static void CtrlCHandler(object? sender, ConsoleCancelEventArgs e)
@@ -42,6 +44,7 @@ namespace ShoppingCart
             Console.WriteLine();
             Console.WriteLine("Saving data before exit...");
             e.Cancel = false;
+            a= false;
         }
     }
 }

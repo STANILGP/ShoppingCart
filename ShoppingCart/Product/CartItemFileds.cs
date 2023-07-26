@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,10 @@ namespace ShoppingCart.Product
         protected int ProductID;
         protected int Quantity;
 
+        public CartItemFileds()
+        {
+        }
+
         public CartItemFileds(int iD, int PRODUCT_ID, int QUANTITY)
         {
             ID = iD;
@@ -21,17 +26,44 @@ namespace ShoppingCart.Product
         public int Id
         {
             get { return ID; }
-            set { ID = value; }
+            set {
+                if (value >= 0)
+                {
+                    ID = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid id.");
+                }
+            }
         }
         public int PRODUCT_ID
         {
             get { return ProductID; }
-            set { ProductID = value; }
+            set {
+                if (value >= 0)
+                {
+                    ProductID = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid product id.");
+                }
+            }
         }
         public int QUANTITY
         {
             get { return Quantity; }
-            set { Quantity = value; }
+            set {
+                if (value >= 0)
+                {
+                    Quantity = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid Quantity.");
+                }
+            }
         }
         public override string ToString()
         {

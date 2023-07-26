@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Commands.CommandApp
 {
-    internal class Logging
+    public class Logging
     {
         public string LoginMessager()
         {
