@@ -18,8 +18,9 @@ namespace ShoppingCart
 {
     public class Input 
     {
-        public void Input_All(string filename, List<ProductFields> products, List<CartItemFileds> cartItems, string role, int br, int Items)
+        public void Input_All(string filename, List<ProductFields> products, List<CartItemFileds> cartItems, string role, int br, int Items,TextWriter output = null)
         {
+            void WriteLine(string message) => (output ?? Console.Out).WriteLine(message);
             string? Command; 
             List<string> logs = new List<string>();
             List<string>c= new List<string>();
@@ -207,9 +208,7 @@ namespace ShoppingCart
                                 logs.Add(messanger.Dont_Have_Product());
                             }
                         }
-
                     }
-
                     else
                     {
                         YouMustBeClient messanger = new YouMustBeClient();
